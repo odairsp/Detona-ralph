@@ -8,11 +8,12 @@ const state = {
     },
     values: {
 
-        gameVelocity: 1000,
+        gameVelocity: 500,
         hitPosition: 0,
         result: 0,
-        currentTime: 5,
+        currentTime: 10,
         lives: 3,
+        maxScore:0,
     },
     actions: {
         timerId: setInterval(randomSquare, 1000),
@@ -31,13 +32,18 @@ function countDown() {
     state.values.currentTime--;
     state.view.timeLeft.textContent = state.values.currentTime;
 
-    if (state.values.currentTime <= 0) {
+    if (state.values.currentTime <= 0 || state.values.lives <= 0) {
 
 
         playSound("gameOver.mp3");
         clearInterval(state.actions.countDownTimerId);
         clearInterval(state.actions.timerId);
-        alert("GAME OVER! \nSeu resultado foi: " + state.values.result);
+        state.view.squares[12].textContent= "GAME OVER!" ;
+        state.view.squares[13].textContent = "SCORE";
+        state.view.squares[14].setAttribute("style","font-size: 30px");
+        state.view.squares[14].textContent = state.values.result;
+        
+        init();
     }
 }
 
