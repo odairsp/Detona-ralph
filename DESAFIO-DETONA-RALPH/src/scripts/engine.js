@@ -40,8 +40,8 @@ function countDown() {
         clearInterval(state.actions.timerId);
         state.view.squares[12].textContent= "GAME OVER!" ;
         state.view.squares[13].textContent = "SCORE";
-        state.view.squares[14].setAttribute("style","font-size: 30px");
-        state.view.squares[14].textContent = state.values.result;
+        state.view.squares[22].setAttribute("style","font-size: 30px");
+        state.view.squares[22].textContent = state.values.result;
         
         init();
     }
