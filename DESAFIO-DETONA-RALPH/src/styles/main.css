@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    background-image: url("../images/wall.png");
 }
 
 .menu {
@@ -15,33 +16,40 @@
     width: 100%;
     background-color: #000000;
     color: #ffffff;
+    border-bottom: 5px solid #ffd700;
 
 }
 
-.menu div {
-    border: 1px solid #ffffff;
+.menu-time h2:nth-child(2), 
+.menu-score h2:nth-child(2){
+    margin-top: 1rem;
+}
+
+.menu-lives{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .panel {
-    border: 10px solid #ff0000;
     margin-top: 1rem;
     padding: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../images/wall.png");
 }
 
 .square {
-    height: 150px;
-    width: 150px;
-    
-    border: 1px solid #ff0000;
+    height: 110px;
+    width: 110px;
+    border: 1px solid #000000;
+    background-image: linear-gradient(#a03e11,rgb(117, 64, 64)) ;
     
 }
 
 .enemy {
     background-image: url("../images/ralph.png"), linear-gradient(0deg, #a03e11,black);
-    object-fit: scale-down;
-    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
 }
