@@ -8,15 +8,15 @@ const state = {
     },
     values: {
 
-        gameVelocity: 500,
+        gameVelocity: 250,
         hitPosition: 0,
         result: 0,
         currentTime: 10,
         lives: 3,
-        maxScore:0,
+        maxScore: 0,
     },
     actions: {
-        timerId: setInterval(randomSquare, 1000),
+        timerId: setInterval(randomSquare, 700),
         countDownTimerId: setInterval(countDown, 1000),
     }
 }
@@ -38,12 +38,13 @@ function countDown() {
         playSound("gameOver.mp3");
         clearInterval(state.actions.countDownTimerId);
         clearInterval(state.actions.timerId);
-        state.view.squares[12].textContent= "GAME OVER!" ;
+        state.view.squares[12].textContent = "GAME OVER!";
         state.view.squares[13].textContent = "SCORE";
-        state.view.squares[22].setAttribute("style","font-size: 30px");
-        state.view.squares[22].textContent = state.values.result;
-        
-        init();
+        state.view.squares[14].classList.remove("enemy");
+        state.view.squares[14].setAttribute("style", "font-size: 30px");
+        state.view.squares[14].textContent = state.values.result;
+
+
     }
 }
 
@@ -52,7 +53,7 @@ function randomSquare() {
         square.classList.remove("enemy")
     });
 
-    let randomNumber = Math.floor(Math.random() * 25);
+    let randomNumber = Math.floor(Math.random() * 20);
     let randomSquare = state.view.squares[randomNumber];
     randomSquare.classList.add("enemy");
     state.values.hitPosition = randomSquare.id;
@@ -60,21 +61,27 @@ function randomSquare() {
 }
 
 function addListenerHitBox() {
-    state.view.squares.forEach((square) => {
-        square.addEventListener("mousedown", () => {
-            if (square.id === state.values.hitPosition) {
-                playSound("hit.m4a");
-                state.values.result++;
-                state.view.score.textContent = state.values.result;
-                state.values.hitPosition = null;
-            } else {
+    if () {
+        state.view.squares.forEach((square) => {
+            square.addEventListener("mousedown", () => {
 
-                playSound("liveLost.mp3");
-                state.values.lives--;
-                state.view.live.textContent = "x" + state.values.lives;
-            }
+                if (square.id === state.values.hitPosition) {
+                    playSound("hit.m4a");
+                    state.values.result++;
+                    state.view.score.textContent = state.values.result;
+                    state.values.hitPosition = null;
+                } else {
+
+                    playSound("liveLost.mp3");
+                    state.values.lives--;
+                    state.view.live.textContent = "x" + state.values.lives;
+                }
+
+
+            });
+
         });
-    });
+    }
 }
 
 function init() {
