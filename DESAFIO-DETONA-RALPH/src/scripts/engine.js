@@ -44,7 +44,6 @@ function countDown() {
         state.view.squares[14].setAttribute("style", "font-size: 30px");
         state.view.squares[14].textContent = state.values.result;
 
-
     }
 }
 
@@ -61,27 +60,27 @@ function randomSquare() {
 }
 
 function addListenerHitBox() {
-    if () {
-        state.view.squares.forEach((square) => {
-            square.addEventListener("mousedown", () => {
 
+    state.view.squares.forEach((square) => {
+        square.addEventListener("mousedown", () => {
+            if (state.values.currentTime > 0 && state.values.lives >0) {
                 if (square.id === state.values.hitPosition) {
                     playSound("hit.m4a");
                     state.values.result++;
                     state.view.score.textContent = state.values.result;
                     state.values.hitPosition = null;
                 } else {
-
                     playSound("liveLost.mp3");
                     state.values.lives--;
                     state.view.live.textContent = "x" + state.values.lives;
                 }
 
-
-            });
-
+            }
         });
-    }
+
+    });
+
+
 }
 
 function init() {
